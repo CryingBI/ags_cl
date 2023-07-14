@@ -50,6 +50,7 @@ class Net(nn.Module):
         h=self.drop1(self.MaxPool(act6))
         h=h.view(x.shape[0],-1)
         act7 = self.relu(self.fc1(h))
+        print(act7.shape)
         h = self.drop2(act7)
         y = []
         for t,i in self.taskcla:
@@ -88,6 +89,5 @@ class Net(nn.Module):
             for i in act:
                 self.act.append(i.detach())
             for idx, name in enumerate(names):
-                print("Oke")
                 act[idx].register_hook(save_grad(name))
         return y
