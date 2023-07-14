@@ -230,7 +230,7 @@ class Appr(object):
             self.optimizer.zero_grad()
             loss.backward()
             self.optimizer.step()
-
+            
             #Freeze the outgoing weights
             if t>0:
                 for name, param in self.model.named_parameters():

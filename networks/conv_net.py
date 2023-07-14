@@ -88,5 +88,6 @@ class Net(nn.Module):
             for i in act:
                 self.act.append(i.detach())
             for idx, name in enumerate(names):
+                print("Oke")
                 act[idx].register_hook(save_grad(name))
         return y
