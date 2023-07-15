@@ -41,7 +41,7 @@ def gs_cal(t, x, y, criterion, model, sbatch=20):
         cnt = 0
         
         for idx, j in enumerate(model.act):
-            print(model.act.shape)
+            print(j.shape)
             j = torch.mean(j, dim=0)
             print(j.shape)
             if len(j.size())>1:
