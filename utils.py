@@ -41,9 +41,12 @@ def gs_cal(t, x, y, criterion, model, sbatch=20):
         cnt = 0
         
         for idx, j in enumerate(model.act):
+            print(model.act.shape)
             j = torch.mean(j, dim=0)
+            print(j.shape)
             if len(j.size())>1:
                 j = torch.mean(j.view(j.size(0), -1), dim = 1).abs()
+                print("j last:", j.shape)
             model.act[idx] = j
             
         for name, param in model.named_parameters():
