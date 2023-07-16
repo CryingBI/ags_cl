@@ -28,6 +28,7 @@ def gs_cal(t, x, y, criterion, model, sbatch=20):
         param = param.view(param.size(0), -1)
         param_R['{}'.format(name)]=torch.zeros((param.size(0)))
     
+    print(param_R.keys())
     # Compute
     model.train()
 
@@ -41,12 +42,9 @@ def gs_cal(t, x, y, criterion, model, sbatch=20):
         cnt = 0
         
         for idx, j in enumerate(model.act):
-            print(j.shape)
             j = torch.mean(j, dim=0)
-            print(j.shape)
             if len(j.size())>1:
                 j = torch.mean(j.view(j.size(0), -1), dim = 1).abs()
-                print("j last:", j.shape)
             model.act[idx] = j
             
         for name, param in model.named_parameters():
@@ -54,6 +52,7 @@ def gs_cal(t, x, y, criterion, model, sbatch=20):
                 continue
             name = name.split('.')[:-1]
             name = '.'.join(name)
+            print(name)
             param_R[name] += model.act[cnt].abs().detach()*sbatch
             cnt+=1 
 

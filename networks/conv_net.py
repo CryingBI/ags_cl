@@ -50,7 +50,7 @@ class Net(nn.Module):
         h=self.drop1(self.MaxPool(act6))
         h=h.view(x.shape[0],-1)
         act7 = self.relu(self.fc1(h))
-        print(act7.shape)
+        #print(act7.shape)
         h = self.drop2(act7)
         y = []
         for t,i in self.taskcla:
