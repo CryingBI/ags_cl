@@ -76,13 +76,13 @@ class Appr(object):
                 key = name.split('.')[0]
                 if 'conv1' not in name:
                     if 'conv' in name: #convolution layer
-                        print(prekey)
+                        print("prekey in conv:", prekey)
                         temp = torch.ones_like(param)
                         temp[:, self.omega[prekey] == 0] = 0
                         temp[self.omega[key] == 0] = 1
                         self.freeze[key] = temp
                     else:#linear layer
-                        print(prekey)
+                        print("prekey in ln:", prekey)
                         temp = torch.ones_like(param)
                         temp = temp.reshape((temp.size(0), self.omega[prekey].size(0) , -1))
                         temp[:, self.omega[prekey] == 0] = 0
