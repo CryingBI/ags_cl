@@ -52,7 +52,6 @@ def gs_cal(t, x, y, criterion, model, sbatch=20):
                 continue
             name = name.split('.')[:-1]
             name = '.'.join(name)
-            print(name)
             param_R[name] += model.act[cnt].abs().detach()*sbatch
             cnt+=1 
 
