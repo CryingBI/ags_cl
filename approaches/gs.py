@@ -89,7 +89,7 @@ class Appr(object):
                         temp[self.omega[key] == 0] = 1
                         self.freeze[key] = temp.reshape(param.shape)
                 prekey = key
-                
+            print("freeze_keys", self.freeze.keys()) 
         # Loop epochs
         for e in range(self.nepochs):
             # Train
